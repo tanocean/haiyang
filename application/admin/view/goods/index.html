@@ -1,0 +1,93 @@
+{extend name="common/default"}
+{block name="main"}
+	<!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+        </div>
+        <div class="search-wrap">
+            <div class="search-content">
+                <form action="/goods/index" method="GET">
+                    <table class="search-tab">
+                        <tr>
+                            <th width="120">状态:</th>
+                            <td>
+                                <select name="status" id="">
+                                    <option value="">全部</option>
+                                    <option value="1">新品</option>
+                                    <option value="2">上架</option>
+                                    <option value="3">下架</option>
+                                </select>
+                            </td>
+                            <th width="70">商品名称:</th>
+                            <td><input class="common-text" placeholder="" name="gname" value="" id="" type="text"></td>
+                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="insert.html"><i class="icon-font"></i>新增作品</a>
+                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                           	<th>ID号</th>
+                           	<th>商品名称</th>
+                           	<th>商品图片</th>
+                           	<th>商品类别</th>
+                           	<th>商品定价</th>
+                            <th>商品库存</th>
+                           	<th>商品描述</th>
+                           	<th>商品状态</th>
+                           	<th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    {foreach $goods as $k=>$v}
+                        <tr>
+                            <td>{$v->gid}</td>
+                            <td>{$v->gname}</td>
+                            <td>
+                                <img src="{:config('disp_path').$v->smgpic}" />
+                            </td>
+                            <td>{$v['cate']['cname']}</td>
+                            <td>{$v->price}</td>
+                            <td>{$v->stock}</td>
+                            <td>{$v->gdesc}</td>
+                            <td>
+                                {if $v->status==1}
+                                    新品
+                                {elseif $v->status==2}
+                                    上架
+                                {elseif $v->status==3}
+                                    下架
+                                {/if}
+                            </td>
+                            <td>{:date('Y-m-d H:i:s',$v->create_at)}</td>
+                            <td>
+                                <a class="link-update" href="/goods/{$v->gid}/edit">修改</a>
+                                <a class="link-del" onclick="return confirm('确认删除?')" href="/goods/del/{$v->gid}">删除</a>
+                                {if $v->status!=2}
+                                <a class="link-del" href="/goods/{$v->gid}/up">上架</a>
+                                {else}
+                                <a class="link-del" href="/goods/{$v->gid}/down">下架</a>
+                                {/if}
+                            </td>
+                        </tr>
+                    {/foreach}          
+                    </table>
+                    <div class="list-page">{$goods->render()|raw}</div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+{/block}

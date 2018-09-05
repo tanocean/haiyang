@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8' />
+        <link href="/static/home/css/top.css"   rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/head.css"  rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/menu.css"  rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/mainbody.css"  rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/foot.css"  rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/tuiguang.css"   rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/goodslist.css"  rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/detail.css"  rel="stylesheet" type="text/css" />
+        <link href="/static/home/css/tocart.css"  rel="stylesheet" type="text/css" />
+        	<!-- 分页的css样式 -->
+        <link rel="stylesheet" type="text/css" href="/static/home/css/common.css"/> 
+    	<!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/main.css"/> -->
+    	
+        <?php if(empty($show)):  ?>
+        <link href="/static/home/css/hidemenu.css"  rel="stylesheet" type="text/css" />
+    	<?php endif; ?>
+	</head>
+	<body>
+		<div id='top'>
+			<div id='top_content'>
+				<div id='top_cl'>送至: 北京</div>
+				<div id='top_cr'>
+					<ul>
+					{if empty( session('homeFlag') )}
+					   <li>你好,请
+					   		<a href="/login">登录</a>
+					   </li>
+				    {else}
+				    	<li>{:session('homeUserInfo.uname')}
+				    		<a href="/logout">退出</a>
+				    	</li>
+			    	{/if}
+			    		<li><a href="/reg">注册</a></li>
+					   <li><a href="/orders/myorders">我的订单</a></li> <li><a href="/orders/userinfo">我的京东</a></li>
+					   <li>京东会员</li>
+					   <li>企业采购</li>
+					   <li>手机京东</li>
+					   <li>关注京东</li>
+					   <li>客户服务</li>
+					   <li>网站导航</li>
+					</ul>
+				</div>
+				<div style='clear:both;'></div>
+			</div>
+		</div>
+		<div id='header'>
+			<a  href=""><img  id='logo' src="/static/home/images/logo.png" alt=""></a>
+			<form action="/goodslist" method="get">
+				<input  id='h_in' name="gname" type="text" placeholder=' 商品名称'>
+				<input  id='h_btn' type="submit" value="搜索">
+			</form>
+			<div id='hot_word'>
+				<span>中秋福利</span>
+				<span>手机专场</span>
+				<span>农用物资</span>
+				<span>团购9.9</span>
+				<span>每150减50</span>
+				<span>哺乳文胸</span>
+				<span>深口单鞋女</span>
+				<span>1元专享</span>
+			</div>
+			<a  id='h_cart' href="/cart/index">
+				<i></i>
+				<span>我的购物车</span>
+			</a>
+		</div>
+		<div id='nav'>
+			<ul id='menu'>
+				<li>全部商品分类
+                    <ul id='dropdown'>
+            	<?php
+            		$cates = \app\common\model\Cate::getCates();
+            	?>
+
+                {foreach $cates as $k=>$v}
+                    	<li class='m1'><a href='/goodslist/{$v->cid}'>{$v->cname}</a>
+                             <div class='m2'>
+                             	 <div class='sm_l'>
+                             	 	 <div class='sml_1'>
+                             	 	 	 <a href="">玩3C<i>&gt;</i></a>
+                             	 	 	 <a href="">手机频道<i>&gt;</i></a>
+                             	 	 	 <a href="">网上营业厅<i>&gt;</i></a>
+                             	 	 	 <a href="">配件城<i>&gt;</i></a>
+                             	 	 	 <a href="">影像Club<i>&gt;</i></a>
+                             	 	 	 <a href="">以旧换新<i>&gt;</i></a>
+                             	 	 </div>
+                             	 	 <div class='sml_2'>
+                             	 	{foreach $v->sub as $kk=>$vv}
+                             	 	 	<a href="/goodslist/{$vv->cid}">{$vv->cname}</a>
+                             	 	{/foreach}
+                             	 	</div>
+                             	 </div>
+                             	 <div class='sm_r'>
+                             	 	<img src="/static/home/images/mp_1.png" alt="">
+                             	 	<img src="/static/home/images/mp_2.jpg" alt="">
+                             	 	<img src="/static/home/images/mp_3.jpg" alt="">
+                             	 </div>
+                             </div>
+                    	</li>
+            	{/foreach}
+                    	<li class='m1'><a href=''>图书、音像、电子书</a></li>
+                    	<li class='m1'><a href=''>彩票、旅行、充值、票务</a></li>
+                    	<li class='m1'><a href=''>理财、众筹、白条、保险</a></li>
+                    </ul>
+				</li>
+			</ul>
+			<ul id='menu_right'>
+				<li>服装城</li>
+				<li>美妆馆</li>
+				<li>京东超市</li>
+				<li>生鲜</li>
+				<li>全球购</li>
+				<li>闪购</li>
+				<li>团购</li>
+				<li>拍卖</li>
+				<li>金融</li>
+			</ul>
+		</div>
+		<div id='line'></div>

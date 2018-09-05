@@ -1,0 +1,58 @@
+{extend name="common/default"}
+{block name="main"}
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+        </div>
+        <div class="search-wrap">
+            <div class="search-content">
+               
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="insert.html"><i class="icon-font"></i>新增作品</a>
+                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr>
+                          <!--   <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th> -->
+                            <th>商品名称</th>
+                            <th>商品图片</th>
+                            
+                            <th>购买单价</th>
+                            <th>购买数量</th>
+                            <th>小计</th>
+                            
+                           
+                        </tr>
+                       {foreach $details as $k=>$v}
+                        <tr align="center">
+                            <td style="width:400px;">{$v->goods->gname}</td>
+                            <td>
+                                <img src="{:config('disp_path').$v->goods->smgpic}" />
+
+                            </td>
+
+                            <td>{$v->price}</td> 
+                            <td>{$v->cnt}</td> 
+                            <td>{$v->price*$v->cnt}</td> 
+                            
+                        </tr>
+                        {/foreach}
+                    </table>
+
+                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                    <div class="list-page">1/1页</div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{/block}

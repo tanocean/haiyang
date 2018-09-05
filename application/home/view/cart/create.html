@@ -1,0 +1,24 @@
+{include file="common/header"}
+	<div id='precart-p'>
+    <div id='precart-c'>
+        <div id='pre-l'>
+            <p>商品已成功加入购物车！</p>
+            <img src='{:config("disp_path").$goods->smgpic}'><div>
+                <span>{$goods->gname}</span>
+                <span>{$goods->gdesc}/ {$goods->cnt}</span>
+            </div>
+        </div>
+        <div id='pre-r'>
+            <a href='/'>返回</a>
+            <a href='/cart/index'>去购物车结算</a>
+        </div>
+    </div>
+</div>
+<div style='clear:both;'></div>
+
+
+
+<!--  页脚  -->
+	
+	</body>
+</html>

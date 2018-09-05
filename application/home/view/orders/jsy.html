@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <link href="/static/home/css/foot.css" rel="stylesheet"  type="text/css" />
+    <link href="/static/home/css/jiesuanye.css" rel="stylesheet"  type="text/css" />
+
+</head>
+<body>
+	<div id='top'>
+		<div id='top-m'>
+			<span id='top-m-l'>送至：北京</span>
+			<span id='top-m-r'><strong>向日葵</strong> <a href="/cart/index">退出</a> | 我的订单 | 我的京东 | 京东会员 | 企业采购 | 手机京东 | 关注京东 | 客户服务 | 网站导航</span>
+		</div>
+	</div>
+	<img id='top-img' src="/static/home/images/top.png" alt="">
+	<div id='order'>
+		 <span id='o-title'>收货人信息</span>
+		 <a href='' id='o-add'>新增收货地址</a>
+		 <div style='clear:both;'></div>
+		 <span id='o-addr'>{:session( 'orders.rec')}<i></i><b>v</b></span>
+		 <span id='o-name'>{:session( 'orders.rec')}</span>
+		 <span id='o-addres'>{:session('orders.addr')}</span>
+		 <span id='o-tel'>{:session( 'orders.tel' )}</span>
+		 <div id='o-line'>{:session( 'orders.umsg')}</div>
+		 <span id='o-shqd'>送货清单</span>
+		 <span id='o-jgsm'>价格说明   <a href="/cart/index">返回修改购物车</a></span>
+		 <div id='o-content'>
+		    
+		     	<img src="/static/home/images/pstime.png" alt="">
+		
+		 		
+		 	   <div id='opcon'>
+		 	   	{foreach $cart as $k=>$v}
+				 	<div class='o-con-d'>
+				 		<img class='o-pic' src="{:config('disp_path').$v->smgpic}" alt="">
+				 		<div class='o-m'>
+					 		<span class='o-name'>
+					 		   {$v->gname}
+					 		</span>
+					 		<span class='o-tui'>7天无理由退货</span>
+				 		</div>
+				 		<span class='o-price'>￥{$v->price}</span><span class='o-cnt'>{$v->cnt}</span><span class='o-state'>有货</span>
+				 	</div>
+			 	{/foreach}
+                    
+
+
+			 	</div>
+
+		 	</div>	
+		 	<div style='clear:both;'></div>	 
+		 </div>
+		 <div id='o-za'>
+		 	 <div id='o-zafei1'>
+		 	 	<div class='o-zafei'>￥{:number_format( session( 'orders.sum') ,2,'.', '') }</div>
+		 	 	<div class='o-zafei'>-￥0.00</div>
+		 	 	<div class='o-zafei'>￥0.00</div>
+		 	 	<div class='o-zafei'>￥0.00</div>
+		 	 </div>
+		 	 <div id='o-zafei2'>
+		 	 	<div class='o-zafei'>{:session( 'orders.cnt')} 件商品，总商品金额：</div>
+		 	 	<div class='o-zafei'>返现：</div>
+		 	 	<div class='o-zafei'>运费：</div>
+		 	 	<div class='o-zafei'>服务费：</div>
+		 	 </div>
+		 	 <div style='clear:both;'></div>
+		 </div>
+		 <div id='o-end'>
+		 	<div id='o-end1'><span>应付总额：</span> <b>￥{:number_format( session( 'orders.sum') ,2,'.', '') }</b></div>
+		 	<div id='o-end2'><span>寄送至：{:session( 'orders.addr')} </span>&nbsp;&nbsp;<span>收货人：{:session( 'orders.rec')}&nbsp;&nbsp;{:session( 'orders.tel')}</span></div>
+		 </div>
+		 <div id='o-final'>
+		 	<a id='o-submit' href="/orders/save"></a>
+		 </div>
+	    
+</body>
+</html>

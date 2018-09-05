@@ -1,0 +1,63 @@
+{extend name="common/default"}
+{block name="main"}
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="/admin/update/{$orders->oid}" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr">
+                                <th><i class="require-red">*</i>订单号：</th>
+                                <td>
+                                    <input style="color:gray;" readonly class="common-text required" id="title"  size="50" value="{$orders->oid}" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>总金额：</th>
+                                <td>
+                                    <input  style="color:gray;" readonly class="common-text required" id="title"  size="50" value="{$orders->sum}" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>下单时间：</th>
+                                <td><input  style="color:gray;" readonly  class="common-text"  size="50" value="{:date('Y-m-d H:i:s',$orders->create_at)}" type="text"></td>
+                            </tr>
+                             <tr>
+                                <th>收货人：</th>
+                                <td><input class="common-text" name="rec" size="50" value="{$orders->rec}" type="text"></td>
+                            </tr>
+                             <tr>
+                                <th>收货地址：</th>
+                                <td><input class="common-text" name="addr" size="50" value="{$orders->addr}" type="text"></td>
+                            </tr>
+                             <tr>
+                                <th>联系方式：</th>
+                                <td><input class="common-text" name="tel" size="50" value="{$orders->tel}" type="text"></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th>买家备注：</th>
+                                <td><textarea name="umsg" class="common-textarea" id="content" cols="20" style="width: 98%;" rows="10">{$orders->umsg}</textarea></td>
+                            </tr>
+                            
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+{/block}
